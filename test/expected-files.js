@@ -27,6 +27,19 @@ describe('Expected files', function () {
     })
   })
 
+  it('should accept files with multiple possible names', function (done) {
+    var form = new FormData()
+    var parser = upload.single(['butme', 'andme'])
+
+    form.append('andme', util.file('small0.dat'))
+
+    util.submitForm(parser, form, function (err, req) {
+      assert.ifError(err)
+
+      assert.equal(req.file.originalname, 'small0.dat')
+      done()
+    })
+  })
   it('should reject array of multiple files', function (done) {
     var form = new FormData()
     var parser = upload.array('butme', 4)
