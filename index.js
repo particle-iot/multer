@@ -58,8 +58,8 @@ Multer.prototype._makeMiddleware = function (fields, fileStrategy) {
 
 /** @param {string | string[]} names */
 Multer.prototype.single = function (names) {
-  names = !Array.isArray(names) ? [names] : names;
-  return this._makeMiddleware(names.map((name) =>({ name, maxCount: 1 })), 'VALUE')
+  names = !Array.isArray(names) ? [names] : names
+  return this._makeMiddleware(names.map((name) => ({ name, maxCount: 1 })), 'VALUE')
 }
 
 Multer.prototype.array = function (name, maxCount) {
